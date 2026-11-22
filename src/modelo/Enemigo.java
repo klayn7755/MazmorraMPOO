@@ -7,43 +7,36 @@
  */
 package modelo;
 
-import excepciones.FueraDeAlcanceException;
-
-/** Clase abstracta de los monstruos. Define una IA básica: detectar, acercarse y atacar. */
+/** Clase abstracta de los monstruos: detectan al héroe, se acercan y atacan. */
 public abstract class Enemigo extends Entidad {
 
-    protected Enemigo(String nombre, int vidaMaxima, int ataqueBase, int defensa, int puntosOtorgados) {
-        super(nombre, vidaMaxima, ataqueBase, defensa);
-        setPuntosOtorgados(puntosOtorgados);
+    private static final int RADIO_DETECCION = 6;
+
+    public Enemigo(String nombre, int vidaMaxima, int ataque, int defensa, int recompensa) {
+        super(nombre, vidaMaxima, ataque, defensa);
+        setRecompensa(recompensa);
     }
 
-    /** Casillas que puede avanzar por turno. */
+    /** Casillas que avanza por turno. */
     public int getVelocidad() {
         return 1;
     }
 
-    /** Distancia a partir de la cual el enemigo nota al héroe. */
-    public int getRadioDeteccion() {
-        return 6;
-    }
-
     @Override
     public String actuar(Tablero tablero, Entidad objetivo) {
-        if (distanciaA(objetivo) > getRadioDeteccion()) {
-            return getNombre() + " permanece al acecho.";
+        if (distanciaA(objetivo) > RADIO_DETECCION) {
+            return getNombre() + " vigila la zona.";
         }
         if (distanciaA(objetivo) <= getAlcance()) {
-            try {
-                return atacar(objetivo);
-            } catch (FueraDeAlcanceException e) {
-                return getNombre() + " falla su ataque.";
-            }
+            return atacar(objetivo);
         }
         int pasos = 0;
-        while (pasos < getVelocidad() && distanciaA(objetivo) > getAlcance()
-                && tablero.acercarEntidad(this, objetivo)) {
+        while (pasos < getVelocidad() && distanciaA(objetivo) > getAlcance()) {
+            if (!tablero.acercar(this, objetivo)) {
+                break;
+            }
             pasos++;
         }
-        return pasos > 0 ? getNombre() + " avanza hacia ti." : getNombre() + " no encuentra camino.";
+        return pasos > 0 ? getNombre() + " se acerca..." : getNombre() + " no encuentra el camino.";
     }
 }

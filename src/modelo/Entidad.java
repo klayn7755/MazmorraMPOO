@@ -7,55 +7,52 @@
  */
 package modelo;
 
-import excepciones.FueraDeAlcanceException;
 import interfaces.Atacable;
 import java.util.Random;
 
-/** Clase base abstracta de todo ser con vida que habita el tablero (héroes y enemigos). */
+/** Clase base abstracta de todo ser vivo del juego (héroes y enemigos). */
 public abstract class Entidad implements Atacable {
 
     private static final Random DADO = new Random();
 
     private String nombre;
     private int vidaMaxima;
-    private int vidaActual;
-    private int ataqueBase;
+    private int vida;
+    private int ataque;
     private int defensa;
-    private int puntosOtorgados;
-    private int ultimoDanioRecibido;
+    private int recompensa;   // puntos que da al ser derrotada
     private int fila;
     private int columna;
 
-    protected Entidad(String nombre, int vidaMaxima, int ataqueBase, int defensa) {
+    public Entidad(String nombre, int vidaMaxima, int ataque, int defensa) {
         setNombre(nombre);
         setVidaMaxima(vidaMaxima);
-        setVidaActual(vidaMaxima);
-        setAtaqueBase(ataqueBase);
+        setVida(vidaMaxima);
+        setAtaque(ataque);
         setDefensa(defensa);
     }
 
-    // ---------- Métodos abstractos: cada subclase define su propio comportamiento ----------
+    // ---------- Métodos abstractos: cada subclase los define a su manera ----------
 
-    /** Carácter con el que se dibuja la entidad en el mapa. */
+    /** Letra con la que se dibuja en el mapa. */
     public abstract char getSimbolo();
 
-    /** Daño de un ataque básico (antes de aplicar la defensa del objetivo). */
+    /** Daño de un ataque normal. */
     public abstract int calcularDanio();
 
     /** Distancia máxima (en casillas) a la que puede atacar. */
     public abstract int getAlcance();
 
-    /** Acción que realiza la entidad durante su turno. */
+    /** Lo que hace la entidad en su turno. */
     public abstract String actuar(Tablero tablero, Entidad objetivo);
 
-    // ---------- Métodos concretos (con ganchos que las subclases pueden sobrescribir) ----------
+    // ---------- Métodos concretos ----------
 
-    /** Efecto pasivo al iniciar el turno; por defecto no hace nada. */
+    /** Efecto automático al empezar cada turno (por defecto, ninguno). */
     public String alIniciarTurno() {
         return "";
     }
 
-    /** Indica si derrotar a esta entidad otorga la victoria. */
     public boolean esJefe() {
         return false;
     }
@@ -64,57 +61,43 @@ public abstract class Entidad implements Atacable {
         return DADO.nextInt(caras) + 1;
     }
 
-    /** Ataque básico: valida el alcance, calcula el daño y se lo aplica al objetivo. */
-    public String atacar(Entidad objetivo) throws FueraDeAlcanceException {
-        int distancia = distanciaA(objetivo);
-        if (distancia > getAlcance()) {
-            throw new FueraDeAlcanceException(objetivo.getNombre() + " está a " + distancia
-                    + " casillas y el alcance es " + getAlcance() + ".");
+    /** Ataque estilo Dungeons & Dragons: se tira un d20 para ver si acierta. */
+    public String atacar(Entidad objetivo) {
+        int tirada = tirarDado(20);
+        boolean acierta = tirada == 20 || (tirada != 1 && tirada + ataque >= 10 + objetivo.getDefensa());
+        if (!acierta) {
+            return "[d20=" + tirada + "] " + nombre + " ataca a " + objetivo.getNombre() + " pero falla.";
         }
-        objetivo.recibirDanio(calcularDanio());
-        return nombre + " ataca a " + objetivo.getNombre() + " y le causa "
-                + objetivo.getUltimoDanioRecibido() + " de daño.";
+        int danio = calcularDanio();
+        String extra = "";
+        if (tirada == 20) {
+            danio *= 2;
+            extra = " ¡GOLPE CRÍTICO!";
+        }
+        int real = objetivo.recibirDanio(danio);
+        return "[d20=" + tirada + "] " + nombre + " golpea a " + objetivo.getNombre()
+                + " y causa " + real + " de daño." + extra;
     }
 
     @Override
-    public void recibirDanio(int danio) {
-        aplicarDanio(Math.max(1, danio - defensa));
-    }
-
-    /** Daño que ignora la defensa (hechizos, aliento de fuego). */
-    public void recibirDanioDirecto(int danio) {
-        aplicarDanio(Math.max(1, danio));
-    }
-
-    private void aplicarDanio(int danioReal) {
-        ultimoDanioRecibido = danioReal;
-        setVidaActual(vidaActual - danioReal);
-    }
-
-    protected void restaurarVida(int cantidad) {
-        if (cantidad <= 0) {
-            throw new IllegalArgumentException("La curación debe ser positiva.");
-        }
-        setVidaActual(vidaActual + cantidad);
+    public int recibirDanio(int danio) {
+        int real = Math.max(1, danio - defensa);
+        setVida(vida - real);
+        return real;
     }
 
     @Override
     public boolean estaVivo() {
-        return vidaActual > 0;
+        return vida > 0;
     }
 
-    /** Distancia Manhattan entre dos entidades. */
+    /** Distancia en casillas rectas (sin diagonales). */
     public int distanciaA(Entidad otra) {
         return Math.abs(fila - otra.fila) + Math.abs(columna - otra.columna);
     }
 
-    public String describirEstado() {
-        return nombre + " [Vida " + vidaActual + "/" + vidaMaxima + "]";
-    }
+    // ---------- Getters y setters (con validación) ----------
 
-    // ---------- Getters y setters validados ----------
-
-    @Override
     public String getNombre() { return nombre; }
 
     public final void setNombre(String nombre) {
@@ -133,20 +116,20 @@ public abstract class Entidad implements Atacable {
         this.vidaMaxima = vidaMaxima;
     }
 
-    public int getVidaActual() { return vidaActual; }
+    public int getVida() { return vida; }
 
-    /** La vida siempre se mantiene entre 0 y la vida máxima. */
-    public final void setVidaActual(int vidaActual) {
-        this.vidaActual = Math.max(0, Math.min(vidaActual, vidaMaxima));
+    /** La vida siempre queda entre 0 y la vida máxima. */
+    public final void setVida(int vida) {
+        this.vida = Math.max(0, Math.min(vida, vidaMaxima));
     }
 
-    public int getAtaqueBase() { return ataqueBase; }
+    public int getAtaque() { return ataque; }
 
-    public final void setAtaqueBase(int ataqueBase) {
-        if (ataqueBase < 0) {
+    public final void setAtaque(int ataque) {
+        if (ataque < 0) {
             throw new IllegalArgumentException("El ataque no puede ser negativo.");
         }
-        this.ataqueBase = ataqueBase;
+        this.ataque = ataque;
     }
 
     public int getDefensa() { return defensa; }
@@ -158,17 +141,14 @@ public abstract class Entidad implements Atacable {
         this.defensa = defensa;
     }
 
-    public int getPuntosOtorgados() { return puntosOtorgados; }
+    public int getRecompensa() { return recompensa; }
 
-    public final void setPuntosOtorgados(int puntosOtorgados) {
-        if (puntosOtorgados < 0) {
-            throw new IllegalArgumentException("Los puntos no pueden ser negativos.");
+    public final void setRecompensa(int recompensa) {
+        if (recompensa < 0) {
+            throw new IllegalArgumentException("La recompensa no puede ser negativa.");
         }
-        this.puntosOtorgados = puntosOtorgados;
+        this.recompensa = recompensa;
     }
-
-    @Override
-    public int getUltimoDanioRecibido() { return ultimoDanioRecibido; }
 
     public int getFila() { return fila; }
 

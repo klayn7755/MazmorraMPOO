@@ -7,7 +7,7 @@
  */
 package modelo;
 
-/** Héroe resistente de combate cuerpo a cuerpo con armadura pesada. */
+/** Héroe resistente que pelea cuerpo a cuerpo. */
 public class Guerrero extends Heroe {
 
     public Guerrero(String nombre) {
@@ -15,7 +15,7 @@ public class Guerrero extends Heroe {
     }
 
     @Override
-    public String getNombreClase() { return "Guerrero"; }
+    public String getClase() { return "Guerrero"; }
 
     @Override
     public String getNombreHabilidad() { return "Golpe Brutal"; }
@@ -27,23 +27,15 @@ public class Guerrero extends Heroe {
     public int getAlcance() { return 1; }
 
     @Override
-    public int getAlcanceHabilidad() { return 1; }
-
-    @Override
     public int calcularDanio() {
-        return getAtaqueBase() + tirarDado(6);
+        return getAtaque() + tirarDado(6);
     }
 
-    /** La armadura pesada reduce 2 puntos extra de cada golpe recibido. */
+    /** Golpe Brutal: daño doble. */
     @Override
-    public void recibirDanio(int danio) {
-        super.recibirDanio(Math.max(1, danio - 2));
-    }
-
-    @Override
-    protected String ejecutarHabilidad(Entidad objetivo) {
-        objetivo.recibirDanio(calcularDanio() * 2);
-        return getNombre() + " descarga un Golpe Brutal sobre " + objetivo.getNombre()
-                + " y le causa " + objetivo.getUltimoDanioRecibido() + " de daño.";
+    protected String lanzarHabilidad(Entidad objetivo) {
+        int real = objetivo.recibirDanio(calcularDanio() * 2);
+        return getNombre() + " descarga un GOLPE BRUTAL sobre " + objetivo.getNombre()
+                + " y causa " + real + " de daño.";
     }
 }

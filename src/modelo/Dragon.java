@@ -7,7 +7,7 @@
  */
 package modelo;
 
-/** Jefe final. Cada 3 turnos exhala fuego que ignora la defensa. Derrotarlo da la victoria. */
+/** Jefe final: cada 3 turnos exhala fuego. Si lo derrotas, ganas la partida. */
 public class Dragon extends Enemigo {
 
     private int turnosActivo;
@@ -21,14 +21,11 @@ public class Dragon extends Enemigo {
 
     @Override
     public int calcularDanio() {
-        return getAtaqueBase() + tirarDado(10);
+        return getAtaque() + tirarDado(10);
     }
 
     @Override
     public int getAlcance() { return 3; }
-
-    @Override
-    public int getRadioDeteccion() { return 5; }
 
     @Override
     public boolean esJefe() { return true; }
@@ -36,11 +33,9 @@ public class Dragon extends Enemigo {
     @Override
     public String actuar(Tablero tablero, Entidad objetivo) {
         turnosActivo++;
-        boolean enRango = distanciaA(objetivo) <= getAlcance();
-        if (enRango && turnosActivo % 3 == 0) {
-            objetivo.recibirDanioDirecto(8 + tirarDado(6));
-            return "¡" + getNombre() + " exhala un ALIENTO DE FUEGO y te causa "
-                    + objetivo.getUltimoDanioRecibido() + " de daño!";
+        if (turnosActivo % 3 == 0 && distanciaA(objetivo) <= getAlcance()) {
+            int real = objetivo.recibirDanio(8 + tirarDado(6));
+            return "¡" + getNombre() + " exhala un ALIENTO DE FUEGO! Recibes " + real + " de daño.";
         }
         return super.actuar(tablero, objetivo);
     }

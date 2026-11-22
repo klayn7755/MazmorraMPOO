@@ -7,7 +7,7 @@
  */
 package modelo;
 
-/** Enemigo débil pero veloz: avanza dos casillas por turno. */
+/** Enemigo débil pero rápido: avanza 2 casillas por turno. */
 public class Goblin extends Enemigo {
 
     public Goblin() {
@@ -19,7 +19,7 @@ public class Goblin extends Enemigo {
 
     @Override
     public int calcularDanio() {
-        return getAtaqueBase() + tirarDado(4);
+        return getAtaque() + tirarDado(4);
     }
 
     @Override

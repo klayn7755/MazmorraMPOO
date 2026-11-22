@@ -7,17 +7,17 @@
  */
 package modelo;
 
-/** Objeto consumible que se guarda en el inventario del héroe. */
-public class Objeto {
+/** Objeto que se guarda en el inventario (por ejemplo, una poción). */
+public final class Objeto {
 
     private String nombre;
-    private TipoObjeto tipo;
-    private int potencia;
+    private int curaVida;
+    private int curaEnergia;
 
-    public Objeto(String nombre, TipoObjeto tipo, int potencia) {
+    public Objeto(String nombre, int curaVida, int curaEnergia) {
         setNombre(nombre);
-        setTipo(tipo);
-        setPotencia(potencia);
+        setCuraVida(curaVida);
+        setCuraEnergia(curaEnergia);
     }
 
     public String getNombre() { return nombre; }
@@ -29,40 +29,26 @@ public class Objeto {
         this.nombre = nombre.trim();
     }
 
-    public TipoObjeto getTipo() { return tipo; }
+    public int getCuraVida() { return curaVida; }
 
-    public void setTipo(TipoObjeto tipo) {
-        if (tipo == null) {
-            throw new IllegalArgumentException("El objeto necesita un tipo.");
+    public void setCuraVida(int curaVida) {
+        if (curaVida < 0) {
+            throw new IllegalArgumentException("La curación no puede ser negativa.");
         }
-        this.tipo = tipo;
+        this.curaVida = curaVida;
     }
 
-    public int getPotencia() { return potencia; }
+    public int getCuraEnergia() { return curaEnergia; }
 
-    public void setPotencia(int potencia) {
-        if (potencia <= 0) {
-            throw new IllegalArgumentException("La potencia debe ser positiva.");
+    public void setCuraEnergia(int curaEnergia) {
+        if (curaEnergia < 0) {
+            throw new IllegalArgumentException("La energía no puede ser negativa.");
         }
-        this.potencia = potencia;
-    }
-
-    /** Consume el objeto aplicando su efecto sobre el héroe y devuelve el mensaje del resultado. */
-    public String aplicarEn(Heroe heroe) {
-        switch (tipo) {
-            case POCION_VIDA:
-                heroe.curar(potencia);
-                return "Bebes " + nombre + " y recuperas " + potencia + " de vida.";
-            case POCION_ENERGIA:
-                heroe.recuperarEnergia(potencia);
-                return "Bebes " + nombre + " y recuperas " + potencia + " de energía.";
-            default:
-                return "El objeto no tiene efecto.";
-        }
+        this.curaEnergia = curaEnergia;
     }
 
     @Override
     public String toString() {
-        return nombre + " (+" + potencia + ")";
+        return nombre + " (vida +" + curaVida + ", energía +" + curaEnergia + ")";
     }
 }

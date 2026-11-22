@@ -7,7 +7,7 @@
  */
 package modelo;
 
-/** Héroe frágil de ataque a distancia con mucha energía y hechizos que ignoran la defensa. */
+/** Héroe frágil que ataca desde lejos con hechizos. */
 public class Mago extends Heroe {
 
     public Mago(String nombre) {
@@ -15,7 +15,7 @@ public class Mago extends Heroe {
     }
 
     @Override
-    public String getNombreClase() { return "Mago"; }
+    public String getClase() { return "Mago"; }
 
     @Override
     public String getNombreHabilidad() { return "Bola de Fuego"; }
@@ -31,19 +31,15 @@ public class Mago extends Heroe {
 
     @Override
     public int calcularDanio() {
-        return getAtaqueBase() + tirarDado(6);
+        return getAtaque() + tirarDado(6);
     }
 
-    /** Meditar le devuelve más energía que a las otras clases. */
+    /** Bola de Fuego: ignora la defensa del enemigo. */
     @Override
-    protected int getRecuperacionDescanso() {
-        return 4;
-    }
-
-    @Override
-    protected String ejecutarHabilidad(Entidad objetivo) {
-        objetivo.recibirDanioDirecto(8 + tirarDado(8));
-        return getNombre() + " lanza una Bola de Fuego a " + objetivo.getNombre()
-                + " y le causa " + objetivo.getUltimoDanioRecibido() + " de daño mágico.";
+    protected String lanzarHabilidad(Entidad objetivo) {
+        int danio = 8 + tirarDado(8);
+        int real = objetivo.recibirDanio(danio + objetivo.getDefensa());
+        return getNombre() + " lanza una BOLA DE FUEGO a " + objetivo.getNombre()
+                + " y causa " + real + " de daño.";
     }
 }

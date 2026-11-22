@@ -9,10 +9,8 @@ package modelo;
 
 import interfaces.Curable;
 
-/** Bestia resistente que regenera vida al inicio de cada turno. */
+/** Bestia resistente que regenera vida al empezar cada turno. */
 public class Troll extends Enemigo implements Curable {
-
-    private static final int REGENERACION = 2;
 
     public Troll() {
         super("Troll", 30, 6, 2, 40);
@@ -23,7 +21,7 @@ public class Troll extends Enemigo implements Curable {
 
     @Override
     public int calcularDanio() {
-        return getAtaqueBase() + tirarDado(8);
+        return getAtaque() + tirarDado(8);
     }
 
     @Override
@@ -31,14 +29,14 @@ public class Troll extends Enemigo implements Curable {
 
     @Override
     public void curar(int cantidad) {
-        restaurarVida(cantidad);
+        setVida(getVida() + cantidad);
     }
 
     @Override
     public String alIniciarTurno() {
-        if (getVidaActual() < getVidaMaxima()) {
-            curar(REGENERACION);
-            return getNombre() + " regenera " + REGENERACION + " puntos de vida.";
+        if (getVida() < getVidaMaxima()) {
+            curar(2);
+            return getNombre() + " regenera 2 puntos de vida.";
         }
         return "";
     }
