@@ -9,7 +9,7 @@
  */
 package modelo;
 
-/** Jefe final: cada 3 turnos exhala fuego. Si lo derrotas, ganas la partida. */
+// Jefe final: cada 3 turnos exhala fuego. Si lo derrotas, ganas la partida.
 public class Dragon extends Enemigo {
 
     private int turnosActivo;
