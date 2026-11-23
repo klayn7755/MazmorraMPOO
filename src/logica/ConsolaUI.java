@@ -14,7 +14,7 @@ import modelo.Entidad;
 import modelo.Heroe;
 import modelo.Objeto;
 
-/** Se encarga exclusivamente de mostrar menús, estados, barras y pantallas en consola. */
+//Se encarga de mostrar menús, estados, barras y pantallas en consola
 public class ConsolaUI {
 
     public void mostrarBanner() {
@@ -112,7 +112,7 @@ public class ConsolaUI {
         System.out.println("=================================================");
     }
 
-    /** Barra de progreso en texto */
+    //Barra de progreso en texto
     public String barra(int actual, int maximo) {
         int llenos = (int) Math.round(10.0 * actual / maximo);
         StringBuilder barra = new StringBuilder("[");
