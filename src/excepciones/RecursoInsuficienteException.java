@@ -9,7 +9,7 @@
  */
 package excepciones;
 
-/** Se lanza cuando falta energía, espacio en el inventario u objetos. */
+// Se lanza cuando falta energía, espacio en el inventario u objetos.
 public class RecursoInsuficienteException extends Exception {
 
     private static final long serialVersionUID = 1L;
