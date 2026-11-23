@@ -9,7 +9,7 @@
  */
 package modelo;
 
-/** Enemigo débil pero rápido: avanza 2 casillas por turno. */
+// Enemigo débil pero rápido: avanza 2 casillas por turno.
 public class Goblin extends Enemigo {
 
     public Goblin() {
