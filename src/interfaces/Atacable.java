@@ -9,10 +9,10 @@
  */
 package interfaces;
 
-/** Todo lo que puede recibir daño en combate. */
+// Todo lo que puede recibir daño en combate. 
 public interface Atacable {
 
-    /** Aplica el daño y devuelve cuánto daño real se causó. */
+    // Aplica el daño y devuelve cuánto daño se causó
     int recibirDanio(int danio);
 
     boolean estaVivo();
