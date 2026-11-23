@@ -9,7 +9,7 @@
  */
 package interfaces;
 
-/** Todo lo que puede recuperar vida. */
+// Todo lo que puede recuperar vida. 
 public interface Curable {
 
     void curar(int cantidad);
