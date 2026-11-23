@@ -9,7 +9,7 @@
  */
 package modelo;
 
-/** Clase abstracta de los monstruos: detectan al heroe, se acercan y atacan. */
+//Clase abstracta de los monstruos: detectan al heroe, se acercan y atacan
 public abstract class Enemigo extends Entidad {
 
     private static final int RADIO_DETECCION = 6;
@@ -19,7 +19,7 @@ public abstract class Enemigo extends Entidad {
         setRecompensa(recompensa);
     }
 
-    /** Casillas que avanza por turno. */
+    //Casillas que avanza por turno.
     public int getVelocidad() {
         return 1;
     }
