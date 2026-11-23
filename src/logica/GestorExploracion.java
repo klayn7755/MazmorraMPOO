@@ -1,9 +1,11 @@
 /*
-- Proyecto Final - Modelos de Programación Orientada a Objetos
-- Facultad de Ingeniería, UNAM
-- Integrantes: Kev
-- Grupo: 5
-- Semestre: 2027-1
+ * Proyecto Final - Modelos de Programación Orientada a Objetos
+ * Facultad de Ingeniería, UNAM
+ * Integrantes: González Gaspar Sergio Alexander
+ *              Macario Quintero Kevin Alexis 
+ *              Trujillo Sedano Eduardo
+ * Grupo: 5
+ * Semestre: 2027-1
  */
 package logica;
 
