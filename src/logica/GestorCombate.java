@@ -16,7 +16,7 @@ import modelo.Entidad;
 import modelo.Heroe;
 import modelo.Tablero;
 
-/** Gestiona los ataques del héroe, el turno de los enemigos y la derrota de monstruos. */
+//Gestiona los ataques del héroe, el turno de los enemigos y la derrota de monstruos
 public class GestorCombate {
 
     private final LectorConsola lector;
@@ -89,7 +89,7 @@ public class GestorCombate {
         }
     }
 
-    /** Cada enemigo actúa según su propia clase. */
+    //Cada enemigo actúa según su propia clase
     public void faseEnemigos(Heroe heroe, ArrayList<Entidad> enemigos, Tablero tablero) {
         System.out.println("\n--- Turno de los enemigos ---");
         heroe.alIniciarTurno();
