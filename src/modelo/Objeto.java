@@ -9,7 +9,7 @@
  */
 package modelo;
 
-/** Objeto que se guarda en el inventario (por ejemplo, una poción). */
+// Objeto que se guarda en el inventario
 public final class Objeto {
 
     private String nombre;
