@@ -89,7 +89,7 @@ public class GestorCombate {
         }
     }
 
-    /** Cada enemigo actúa según su propia clase (polimorfismo). */
+    /** Cada enemigo actúa según su propia clase. */
     public void faseEnemigos(Heroe heroe, ArrayList<Entidad> enemigos, Tablero tablero) {
         System.out.println("\n--- Turno de los enemigos ---");
         heroe.alIniciarTurno();
@@ -105,4 +105,5 @@ public class GestorCombate {
             }
         }
     }
+
 }
