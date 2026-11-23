@@ -30,10 +30,10 @@ public class LectorConsola {
                 }
                 return valor;
             } catch (InputMismatchException e) {
-                System.out.println("[!] Eso no es un número. Intenta de nuevo.");
+                System.out.println("Eso no es un número. Intenta de nuevo.");
                 scanner.nextLine();       // limpia el buffer para no ciclarse
             } catch (IllegalArgumentException e) {
-                System.out.println("[!] " + e.getMessage());
+                System.out.println(" alerta " + e.getMessage());
             } catch (NoSuchElementException e) {
                 terminar();
             }

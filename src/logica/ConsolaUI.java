@@ -29,13 +29,14 @@ public class ConsolaUI {
 
     public void mostrarInstrucciones(int limiteTurnos) {
         System.out.println("\n---------------- INSTRUCCIONES ----------------");
-        System.out.println("Bajas a una mazmorra llena de monstruos. Tu misión: derrotar");
-        System.out.println("al Dragón Ancestral (D) antes de que pasen " + limiteTurnos + " turnos.");
+        System.out.println("Bajas a una mazmorra llena de monstruos. Tu mision: derrotar");
+        System.out.println("al Dragon Ancestral (D) antes de que pasen " + limiteTurnos + " turnos.");
         System.out.println("Pierdes si tu vida llega a 0, abandonas o se acaban los turnos.");
         System.out.println();
-        System.out.println("En cada turno haces UNA acción y después se mueven los monstruos.");
+        System.out.println("En cada turno haces UNA accion"
+                + "n y despues se mueven los monstruos.");
         System.out.println(" - Los ataques usan un dado de 20 caras (d20): un 1 siempre falla");
-        System.out.println("   y un 20 es golpe crítico (daño doble).");
+        System.out.println("   y un 20 es golpe crítico (dano doble).");
         System.out.println(" - La habilidad especial gasta energía. Descansar la recupera.");
         System.out.println(" - Pisa '+' para recoger pociones y '$' para ganar puntos.");
         System.out.println(" - El alcance se mide en casillas rectas (sin diagonales).");
@@ -43,13 +44,13 @@ public class ConsolaUI {
     }
 
     public void mostrarLeyenda() {
-        System.out.println("Leyenda: @ tú | g Goblin | T Troll | D Dragón | + poción | $ tesoro | # muro");
+        System.out.println("Leyenda: @ tu | g Goblin | T Troll | D Dragón | + pocion | $ tesoro | # muro");
     }
 
     public void mostrarEstadoHeroe(Heroe heroe, int cantidadEnemigos) {
         System.out.println("\n" + heroe.getNombre() + " el " + heroe.getClase());
         System.out.println("  Vida    " + barra(heroe.getVida(), heroe.getVidaMaxima()));
-        System.out.println("  Energía " + barra(heroe.getEnergia(), heroe.getEnergiaMaxima()));
+        System.out.println("  Energia " + barra(heroe.getEnergia(), heroe.getEnergiaMaxima()));
         System.out.println("  Puntos: " + heroe.getPuntos() + " | Objetos: " + heroe.getInventario().size()
                 + " | Enemigos: " + cantidadEnemigos);
     }
@@ -58,7 +59,7 @@ public class ConsolaUI {
         ArrayList<Objeto> inventario = heroe.getInventario();
         System.out.println("Inventario:");
         if (inventario.isEmpty()) {
-            System.out.println("  (vacío)");
+            System.out.println("  (vacio)");
         }
         for (int i = 0; i < inventario.size(); i++) {
             System.out.println("  " + (i + 1) + ") " + inventario.get(i));
@@ -76,13 +77,13 @@ public class ConsolaUI {
     public void mostrarResumenFinal(Heroe heroe, boolean jefeDerrotado, boolean abandono, int turno, int limiteTurnos) {
         String resultado;
         if (jefeDerrotado) {
-            resultado = "*** ¡VICTORIA! Derrotaste al Dragón Ancestral ***";
+            resultado = "*** VICTORIA! Derrotaste al Dragon Ancestral ***";
         } else if (abandono) {
             resultado = "DERROTA: abandonaste la mazmorra.";
         } else if (!heroe.estaVivo()) {
-            resultado = "DERROTA: tu héroe ha muerto.";
+            resultado = "DERROTA: tu heroe ha muerto.";
         } else {
-            resultado = "DERROTA: se acabó el tiempo y la mazmorra se derrumbó.";
+            resultado = "DERROTA: se acabo el tiempo y la mazmorra se derrumbo.";
         }
 
         int bono = jefeDerrotado ? heroe.getVida() * 2 + (limiteTurnos - turno) : 0;
@@ -101,7 +102,7 @@ public class ConsolaUI {
 
         System.out.println("\n================= RESUMEN FINAL =================");
         System.out.println(resultado);
-        System.out.println("Héroe: " + heroe.getNombre() + " (" + heroe.getClase() + ")");
+        System.out.println("Heroe: " + heroe.getNombre() + " (" + heroe.getClase() + ")");
         System.out.println("Turnos jugados: " + turno + " / " + limiteTurnos);
         System.out.println("Enemigos derrotados: " + heroe.getDerrotados());
         System.out.println("Puntos: " + heroe.getPuntos() + " + bono de victoria " + bono);

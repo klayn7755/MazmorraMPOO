@@ -63,7 +63,7 @@ public class Juego {
             System.out.println("  1) Nueva partida");
             System.out.println("  2) Instrucciones");
             System.out.println("  3) Salir");
-            int opcion = lector.leerEntero("Elige una opción: ", 1, 3);
+            int opcion = lector.leerEntero("Elige una opcion: ", 1, 3);
             if (opcion == 1) {
                 jugarPartida();
             } else if (opcion == 2) {
