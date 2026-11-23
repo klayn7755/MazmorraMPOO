@@ -72,7 +72,7 @@ public class Juego {
                 salir = true;
             }
         }
-        System.out.println("\n¡Hasta la próxima aventura!");
+        System.out.println("\nHasta la proxima aventura!");
     }
 
     private void jugarPartida() {
@@ -90,11 +90,11 @@ public class Juego {
     }
 
     private boolean prepararPartida() {
-        System.out.println("\n=== CREA A TU HÉROE ===");
+        System.out.println("\n=== CREA A TU HeROE ===");
         String nombre = lector.leerTexto("Nombre: ");
         System.out.println("  1) Guerrero - vida 40, defensa alta. Habilidad: Golpe Brutal (daño x2)");
         System.out.println("  2) Mago     - vida 26, ataca de lejos. Habilidad: Bola de Fuego (ignora defensa)");
-        System.out.println("  3) Pícaro   - vida 30, mucho daño. Habilidad: Puñalada Trapera (daño x3)");
+        System.out.println("  3) Picaro   - vida 30, mucho daño. Habilidad: Puñalada Trapera (daño x3)");
         int clase = lector.leerEntero("Clase: ", 1, 3);
         if (clase == 1) {
             heroe = new Guerrero(nombre);
@@ -107,9 +107,9 @@ public class Juego {
         enemigos = new ArrayList<>();
         combate.reiniciar();
         try {
-            heroe.agregarObjeto(new Objeto("Poción de vida", 15, 0));
-            heroe.agregarObjeto(new Objeto("Poción de vida", 15, 0));
-            heroe.agregarObjeto(new Objeto("Poción de energía", 0, 6));
+            heroe.agregarObjeto(new Objeto("Pocion de vida", 15, 0));
+            heroe.agregarObjeto(new Objeto("Pocion de vida", 15, 0));
+            heroe.agregarObjeto(new Objeto("Pocion de energia", 0, 6));
 
             tablero = new Tablero(MAPA);
             tablero.colocar(heroe, 1, 1);
@@ -124,7 +124,7 @@ public class Juego {
 
         turno = 0;
         abandono = false;
-        System.out.println("\n¡Que los dados te sean favorables, " + heroe.getNombre()
+        System.out.println("\nQue los dados te sean favorables, " + heroe.getNombre()
                 + " el " + heroe.getClase() + "!");
         return true;
     }
@@ -162,7 +162,7 @@ public class Juego {
         System.out.println("  5) Descansar");
         System.out.println("  6) Ver enemigos e inventario (no gasta turno)");
         System.out.println("  0) Abandonar");
-        return lector.leerEntero("Acción: ", 0, 6);
+        return lector.leerEntero("Accion: ", 0, 6);
     }
 
     private boolean procesarAccion(int opcion) {
@@ -187,7 +187,7 @@ public class Juego {
     }
 
     private boolean confirmarAbandono() {
-        if (lector.leerEntero("¿Seguro que quieres abandonar? (1=Sí, 0=No): ", 0, 1) == 1) {
+        if (lector.leerEntero("Seguro que quieres abandonar? (1=Si, 0=No): ", 0, 1) == 1) {
             abandono = true;
             return true;
         }

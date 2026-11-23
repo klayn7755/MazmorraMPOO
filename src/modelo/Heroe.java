@@ -57,7 +57,7 @@ public abstract class Heroe extends Entidad implements Curable {
 
     public void recuperarEnergia(int cantidad) {
         if (cantidad <= 0) {
-            throw new IllegalArgumentException("La energía recuperada debe ser positiva.");
+            throw new IllegalArgumentException("La energia recuperada debe ser positiva.");
         }
         setEnergia(energia + cantidad);
     }
