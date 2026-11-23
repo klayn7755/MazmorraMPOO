@@ -112,7 +112,7 @@ public class ConsolaUI {
         System.out.println("=================================================");
     }
 
-    /** Barra de progreso en texto, por ejemplo [######----] 6/10. */
+    /** Barra de progreso en texto */
     public String barra(int actual, int maximo) {
         int llenos = (int) Math.round(10.0 * actual / maximo);
         StringBuilder barra = new StringBuilder("[");
@@ -121,4 +121,5 @@ public class ConsolaUI {
         }
         return barra.append("] ").append(actual).append("/").append(maximo).toString();
     }
+
 }
