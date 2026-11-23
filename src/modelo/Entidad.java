@@ -12,7 +12,7 @@ package modelo;
 import interfaces.Atacable;
 import java.util.Random;
 
-/** Clase base abstracta de todo ser vivo del juego (héroes y enemigos). */
+// Clase base abstracta de todo ser vivo del juego.
 public abstract class Entidad implements Atacable {
 
     private static final Random DADO = new Random();
@@ -34,23 +34,23 @@ public abstract class Entidad implements Atacable {
         setDefensa(defensa);
     }
 
-    // ---------- Métodos abstractos: cada subclase los define a su manera ----------
+    // ---------- Métodos abstractos ----------
 
-    /** Letra con la que se dibuja en el mapa. */
+    // Letra con la que se dibuja en el mapa.
     public abstract char getSimbolo();
 
-    /** Daño de un ataque normal. */
+    //Daño de un ataque normal. 
     public abstract int calcularDanio();
 
-    /** Distancia máxima (en casillas) a la que puede atacar. */
+    // Distancia máxima a la que puede atacar. 
     public abstract int getAlcance();
 
-    /** Lo que hace la entidad en su turno. */
+    // Lo que hace la entidad en su turno.
     public abstract String actuar(Tablero tablero, Entidad objetivo);
 
-    // ---------- Métodos concretos ----------
+    // ---------- Metodos concretos ----------
 
-    /** Efecto automático al empezar cada turno (por defecto, ninguno). */
+    // Efecto automático al empezar cada turno (por defecto, ninguno). 
     public String alIniciarTurno() {
         return "";
     }
@@ -63,7 +63,7 @@ public abstract class Entidad implements Atacable {
         return DADO.nextInt(caras) + 1;
     }
 
-    /** Ataque estilo Dungeons & Dragons: se tira un d20 para ver si acierta. */
+    // Ataque estilo Dungeons & Dragons: se tira un d20 para ver si acierta. */
     public String atacar(Entidad objetivo) {
         int tirada = tirarDado(20);
         boolean acierta = tirada == 20 || (tirada != 1 && tirada + ataque >= 10 + objetivo.getDefensa());
@@ -93,12 +93,12 @@ public abstract class Entidad implements Atacable {
         return vida > 0;
     }
 
-    /** Distancia en casillas rectas (sin diagonales). */
+    // Distancia en casillas rectas
     public int distanciaA(Entidad otra) {
         return Math.abs(fila - otra.fila) + Math.abs(columna - otra.columna);
     }
 
-    // ---------- Getters y setters (con validación) ----------
+    // ---------- Getters y setters ------------
 
     public String getNombre() { return nombre; }
 
