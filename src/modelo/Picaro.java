@@ -9,7 +9,7 @@
  */
 package modelo;
 
-/** Héroe ágil con mucho daño de golpe. */
+//Héroe ágil con mucho daño de golpe
 public class Picaro extends Heroe {
 
     public Picaro(String nombre) {
@@ -33,7 +33,7 @@ public class Picaro extends Heroe {
         return getAtaque() + tirarDado(8);
     }
 
-    /** Puñalada Trapera: daño triple. */
+    //Puñalada Trapera: daño triple
     @Override
     protected String lanzarHabilidad(Entidad objetivo) {
         int real = objetivo.recibirDanio(calcularDanio() * 3);
