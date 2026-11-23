@@ -9,7 +9,7 @@
  */
 package modelo;
 
-/** Héroe frágil que ataca desde lejos con hechizos. */
+// Héroe frágil que ataca desde lejos con hechizos.
 public class Mago extends Heroe {
 
     public Mago(String nombre) {
@@ -36,7 +36,7 @@ public class Mago extends Heroe {
         return getAtaque() + tirarDado(6);
     }
 
-    /** Bola de Fuego: ignora la defensa del enemigo. */
+    //Bola de Fuego: ignora la defensa del enemigo.
     @Override
     protected String lanzarHabilidad(Entidad objetivo) {
         int danio = 8 + tirarDado(8);
