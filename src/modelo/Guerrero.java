@@ -9,7 +9,7 @@
  */
 package modelo;
 
-/** Héroe resistente que pelea cuerpo a cuerpo. */
+// Héroe resistente que pelea cuerpo a cuerpo. 
 public class Guerrero extends Heroe {
 
     public Guerrero(String nombre) {
@@ -33,7 +33,7 @@ public class Guerrero extends Heroe {
         return getAtaque() + tirarDado(6);
     }
 
-    /** Golpe Brutal: daño doble. */
+    // Golpe Brutal: daño doble.
     @Override
     protected String lanzarHabilidad(Entidad objetivo) {
         int real = objetivo.recibirDanio(calcularDanio() * 2);
