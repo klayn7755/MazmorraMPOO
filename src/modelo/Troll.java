@@ -11,7 +11,7 @@ package modelo;
 
 import interfaces.Curable;
 
-/** Bestia resistente que regenera vida al empezar cada turno. */
+//Bestia resistente que regenera vida al empezar cada turno
 public class Troll extends Enemigo implements Curable {
 
     public Troll() {
