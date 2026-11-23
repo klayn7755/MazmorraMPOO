@@ -13,12 +13,12 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-/** Lee datos de consola sin que el programa se caiga por entradas inválidas. */
+// Lee datos de consola sin que el programa se caiga por entradas inválidas.
 public class LectorConsola {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    /** Pide un número entero entre minimo y maximo; repite hasta que sea válido. */
+    // Pide un número entero entre minimo y maximo; repite hasta que sea válido.
     public int leerEntero(String mensaje, int minimo, int maximo) {
         while (true) {
             System.out.print(mensaje);
@@ -42,7 +42,7 @@ public class LectorConsola {
         }
     }
 
-    /** Pide un texto que no este vacío. */
+    // Pide un texto que no este vacío.
     public String leerTexto(String mensaje) {
         while (true) {
             System.out.print(mensaje);
