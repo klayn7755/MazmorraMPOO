@@ -13,7 +13,7 @@ import excepciones.RecursoInsuficienteException;
 import interfaces.Curable;
 import java.util.ArrayList;
 
-/** Clase abstracta de los héroes que puede elegir el jugador. */
+// Clase abstracta de los héroes que puede elegir el jugador.
 public abstract class Heroe extends Entidad implements Curable {
 
     private static final int CAPACIDAD_INVENTARIO = 5;
@@ -40,14 +40,14 @@ public abstract class Heroe extends Entidad implements Curable {
 
     protected abstract String lanzarHabilidad(Entidad objetivo);
 
-    /** Alcance de la habilidad; por defecto igual al del ataque normal. */
+    // Alcance de la habilidad; por defecto igual al del ataque normal.
     public int getAlcanceHabilidad() {
         return getAlcance();
     }
 
     // ---------- Comportamiento común ----------
 
-    /** Revisa que haya energía suficiente y luego deja que cada clase lance su habilidad. */
+    // Revisa que haya energía suficiente y luego deja que cada clase lance su habilidad.
     public final String usarHabilidad(Entidad objetivo) throws RecursoInsuficienteException {
         if (getCostoHabilidad() > energia) {
             throw new RecursoInsuficienteException("Energia insuficiente: necesitas "
@@ -106,7 +106,7 @@ public abstract class Heroe extends Entidad implements Curable {
         sumarPuntos(puntosGanados);
     }
 
-    /** La acción "actuar" del héroe es descansar. */
+    // La acción actuar del héroe es descansar. 
     @Override
     public String actuar(Tablero tablero, Entidad objetivo) {
         recuperarEnergia(3);
@@ -114,7 +114,7 @@ public abstract class Heroe extends Entidad implements Curable {
         return getNombre() + " descansa y recupera 3 de energia y 3 de vida.";
     }
 
-    /** Cada ronda el héroe recupera 1 punto de energía. */
+    // Cada ronda el héroe recupera 1 punto de energía.
     @Override
     public String alIniciarTurno() {
         recuperarEnergia(1);
@@ -147,7 +147,7 @@ public abstract class Heroe extends Entidad implements Curable {
 
     public int getDerrotados() { return derrotados; }
 
-    /** Devuelve una copia para que nadie modifique el inventario desde fuera. */
+    // Devuelve una copia para que nadie modifique el inventario desde fuera.
     public ArrayList<Objeto> getInventario() {
         return new ArrayList<>(inventario);
     }
