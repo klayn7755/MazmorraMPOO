@@ -11,11 +11,11 @@ package modelo;
 
 import excepciones.MovimientoInvalidoException;
 
-/** Mapa del juego: una matriz de terreno y una matriz de entidades (ambas 2D). */
+// Mapa del juego: una matriz de terreno y una matriz de entidades
 public class Tablero {
-
-    private final char[][] terreno;        // '#' muro, '.' suelo, '+' poción, '$' tesoro
-    private final Entidad[][] entidades;   // quién está parado en cada casilla
+    // '#' muro, '.' suelo, '+' poción, '$' tesoro
+    private final char[][] terreno;        
+    private final Entidad[][] entidades;   
     private final int filas;
     private final int columnas;
 
@@ -36,7 +36,7 @@ public class Tablero {
 
     public int getColumnas() { return columnas; }
 
-    /** Revisa que una casilla exista, no sea muro y esté libre. */
+    // Revisa que una casilla exista, no sea muro y esté libre
     private void validar(int fila, int columna) throws MovimientoInvalidoException {
         if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas) {
             throw new MovimientoInvalidoException("Esa posicion está fuera del mapa.");
@@ -56,7 +56,7 @@ public class Tablero {
         entidad.setColumna(columna);
     }
 
-    /** Mueve una entidad una sola casilla (arriba, abajo, izquierda o derecha). */
+    //Mueve una entidad una sola casilla (arriba, abajo, izquierda o derecha)
     public void mover(Entidad entidad, int nuevaFila, int nuevaColumna) throws MovimientoInvalidoException {
         int pasos = Math.abs(nuevaFila - entidad.getFila()) + Math.abs(nuevaColumna - entidad.getColumna());
         if (pasos != 1) {
@@ -71,7 +71,7 @@ public class Tablero {
         entidades[entidad.getFila()][entidad.getColumna()] = null;
     }
 
-    /** Da un paso hacia la meta. Devuelve false si está bloqueado. */
+    //Da un paso hacia la meta. Devuelve false si está bloqueado
     public boolean acercar(Entidad entidad, Entidad meta) {
         int difFila = meta.getFila() - entidad.getFila();
         int difColumna = meta.getColumna() - entidad.getColumna();
@@ -95,7 +95,7 @@ public class Tablero {
         return false;
     }
 
-    /** Recoge lo que haya en el suelo ('+' o '$') y deja la casilla vacía. */
+    //Recoge lo que haya en el suelo ('+' o '$') y deja la casilla vacía
     public char tomarItem(int fila, int columna) {
         char item = terreno[fila][columna];
         if (item == '+' || item == '$') {
@@ -109,7 +109,7 @@ public class Tablero {
         terreno[fila][columna] = item;
     }
 
-    /** Dibuja el mapa completo en consola. */
+    //Dibuja el mapa completo en consola
     public void imprimir() {
         System.out.print("     ");
         for (int c = 0; c < columnas; c++) {
