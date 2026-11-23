@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.Random;
 import modelo.*;
 
-/** Orquestador principal: coordina el ciclo de partida, menús y turnos entre los gestores. */
+// Orquestador principal: coordina el ciclo de partida, menús y turnos entre los gestores.
 public class Juego {
 
     private static final int LIMITE_TURNOS = 60;
 
-    /** Mapa: '#' muro, '.' suelo, '+' poción, '$' tesoro. */
+    // Mapa: '#' muro, '.' suelo, '+' poción, '$' tesoro.
     private static final String[] MAPA = {
         "##############",
         "#............#",
