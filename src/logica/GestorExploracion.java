@@ -16,7 +16,7 @@ import modelo.Heroe;
 import modelo.Objeto;
 import modelo.Tablero;
 
-/** Gestiona el desplazamiento del heroe en el tablero, recolección de ítems y uso de inventario. */
+//Gestiona el desplazamiento del heroe en el tablero, recolección de ítems y uso de inventario
 public class GestorExploracion {
 
     private static final int[] DELTA_FILA = {-1, 1, 0, 0};
