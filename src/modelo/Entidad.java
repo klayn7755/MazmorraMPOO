@@ -66,17 +66,17 @@ public abstract class Entidad implements Atacable {
         int tirada = tirarDado(20);
         boolean acierta = tirada == 20 || (tirada != 1 && tirada + ataque >= 10 + objetivo.getDefensa());
         if (!acierta) {
-            return "[d20=" + tirada + "] " + nombre + " ataca a " + objetivo.getNombre() + " pero falla.";
+            return " [" + tirada + "] " + nombre + " ataca a " + objetivo.getNombre() + " pero falla.";
         }
         int danio = calcularDanio();
         String extra = "";
         if (tirada == 20) {
             danio *= 2;
-            extra = " ¡GOLPE CRÍTICO!";
+            extra = " GOLPE CRITICO!";
         }
         int real = objetivo.recibirDanio(danio);
-        return "[d20=" + tirada + "] " + nombre + " golpea a " + objetivo.getNombre()
-                + " y causa " + real + " de daño." + extra;
+        return "[" + tirada + "] " + nombre + " golpea a " + objetivo.getNombre()
+                + " y causa " + real + " de dano." + extra;
     }
 
     @Override
@@ -111,7 +111,7 @@ public abstract class Entidad implements Atacable {
 
     public final void setVidaMaxima(int vidaMaxima) {
         if (vidaMaxima <= 0) {
-            throw new IllegalArgumentException("La vida máxima debe ser positiva.");
+            throw new IllegalArgumentException("La vida maxima debe ser positiva.");
         }
         this.vidaMaxima = vidaMaxima;
     }

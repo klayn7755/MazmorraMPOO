@@ -35,7 +35,7 @@ public class Juego {
     private static final String[] AMBIENTE = {
         "Una gota cae del techo y el eco recorre la mazmorra...",
         "Escuchas un rugido lejano. Algo grande te espera al fondo.",
-        "Las antorchas parpadean. No estás solo aquí.",
+        "Las antorchas parpadean. No estas solo aquí.",
         "Huele a azufre y a ceniza vieja.",
         "Un viento helado apaga una vela cercana."
     };
@@ -90,11 +90,11 @@ public class Juego {
     }
 
     private boolean prepararPartida() {
-        System.out.println("\n=== CREA A TU HeROE ===");
+        System.out.println("\n=== CREA A TU HEROE ===");
         String nombre = lector.leerTexto("Nombre: ");
-        System.out.println("  1) Guerrero - vida 40, defensa alta. Habilidad: Golpe Brutal (daño x2)");
+        System.out.println("  1) Guerrero - vida 40, defensa alta. Habilidad: Golpe Brutal (dano x2)");
         System.out.println("  2) Mago     - vida 26, ataca de lejos. Habilidad: Bola de Fuego (ignora defensa)");
-        System.out.println("  3) Picaro   - vida 30, mucho daño. Habilidad: Puñalada Trapera (daño x3)");
+        System.out.println("  3) Picaro   - vida 30, mucho dano. Habilidad: Punalada Trapera (dano x3)");
         int clase = lector.leerEntero("Clase: ", 1, 3);
         if (clase == 1) {
             heroe = new Guerrero(nombre);
@@ -157,7 +157,7 @@ public class Juego {
         System.out.println("\n  1) Moverse");
         System.out.println("  2) Atacar");
         System.out.println("  3) Habilidad: " + heroe.getNombreHabilidad() + " (cuesta "
-                + heroe.getCostoHabilidad() + " de energía)");
+                + heroe.getCostoHabilidad() + " de energia)");
         System.out.println("  4) Usar objeto");
         System.out.println("  5) Descansar");
         System.out.println("  6) Ver enemigos e inventario (no gasta turno)");

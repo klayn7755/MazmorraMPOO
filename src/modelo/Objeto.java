@@ -33,7 +33,7 @@ public final class Objeto {
 
     public void setCuraVida(int curaVida) {
         if (curaVida < 0) {
-            throw new IllegalArgumentException("La curación no puede ser negativa.");
+            throw new IllegalArgumentException("La curacion no puede ser negativa.");
         }
         this.curaVida = curaVida;
     }
@@ -42,13 +42,13 @@ public final class Objeto {
 
     public void setCuraEnergia(int curaEnergia) {
         if (curaEnergia < 0) {
-            throw new IllegalArgumentException("La energía no puede ser negativa.");
+            throw new IllegalArgumentException("La energia no puede ser negativa.");
         }
         this.curaEnergia = curaEnergia;
     }
 
     @Override
     public String toString() {
-        return nombre + " (vida +" + curaVida + ", energía +" + curaEnergia + ")";
+        return nombre + " (vida +" + curaVida + ", energia +" + curaEnergia + ")";
     }
 }

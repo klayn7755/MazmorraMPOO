@@ -26,11 +26,11 @@ public class LectorConsola {
                     scanner.nextLine();   // consume el Enter que quedó pendiente
                 }
                 if (valor < minimo || valor > maximo) {
-                    throw new IllegalArgumentException("Elige un número entre " + minimo + " y " + maximo + ".");
+                    throw new IllegalArgumentException("Elige un numero entre " + minimo + " y " + maximo + ".");
                 }
                 return valor;
             } catch (InputMismatchException e) {
-                System.out.println("Eso no es un número. Intenta de nuevo.");
+                System.out.println("Eso no es un numero. Intenta de nuevo.");
                 scanner.nextLine();       // limpia el buffer para no ciclarse
             } catch (IllegalArgumentException e) {
                 System.out.println(" alerta " + e.getMessage());
@@ -40,7 +40,7 @@ public class LectorConsola {
         }
     }
 
-    /** Pide un texto que no esté vacío. */
+    /** Pide un texto que no este vacío. */
     public String leerTexto(String mensaje) {
         while (true) {
             System.out.print(mensaje);
@@ -51,7 +51,7 @@ public class LectorConsola {
                 }
                 return texto;
             } catch (IllegalArgumentException e) {
-                System.out.println("[!] " + e.getMessage());
+                System.out.println("[] " + e.getMessage());
             } catch (NoSuchElementException e) {
                 terminar();
             }
@@ -59,7 +59,7 @@ public class LectorConsola {
     }
 
     private void terminar() {
-        System.out.println("\nSe cerró la entrada. Saliendo del juego.");
+        System.out.println("\nSe cerro la entrada. Saliendo del juego.");
         System.exit(0);
     }
 }

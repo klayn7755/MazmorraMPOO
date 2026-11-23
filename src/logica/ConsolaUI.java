@@ -36,15 +36,15 @@ public class ConsolaUI {
         System.out.println("En cada turno haces UNA accion"
                 + "n y despues se mueven los monstruos.");
         System.out.println(" - Los ataques usan un dado de 20 caras (d20): un 1 siempre falla");
-        System.out.println("   y un 20 es golpe crítico (dano doble).");
-        System.out.println(" - La habilidad especial gasta energía. Descansar la recupera.");
+        System.out.println("   y un 20 es golpe critico (dano doble).");
+        System.out.println(" - La habilidad especial gasta energia. Descansar la recupera.");
         System.out.println(" - Pisa '+' para recoger pociones y '$' para ganar puntos.");
         System.out.println(" - El alcance se mide en casillas rectas (sin diagonales).");
         mostrarLeyenda();
     }
 
     public void mostrarLeyenda() {
-        System.out.println("Leyenda: @ tu | g Goblin | T Troll | D Dragón | + pocion | $ tesoro | # muro");
+        System.out.println("Leyenda: @ tu | g Goblin | T Troll | D Dragon | + pocion | $ tesoro | # muro");
     }
 
     public void mostrarEstadoHeroe(Heroe heroe, int cantidadEnemigos) {

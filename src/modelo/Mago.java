@@ -40,6 +40,6 @@ public class Mago extends Heroe {
         int danio = 8 + tirarDado(8);
         int real = objetivo.recibirDanio(danio + objetivo.getDefensa());
         return getNombre() + " lanza una BOLA DE FUEGO a " + objetivo.getNombre()
-                + " y causa " + real + " de daño.";
+                + " y causa " + real + " de dano.";
     }
 }

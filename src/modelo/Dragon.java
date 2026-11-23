@@ -13,7 +13,7 @@ public class Dragon extends Enemigo {
     private int turnosActivo;
 
     public Dragon() {
-        super("Dragón Ancestral", 35, 7, 2, 100);
+        super("Dragon Ancestral", 35, 7, 2, 100);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Dragon extends Enemigo {
         turnosActivo++;
         if (turnosActivo % 3 == 0 && distanciaA(objetivo) <= getAlcance()) {
             int real = objetivo.recibirDanio(8 + tirarDado(6));
-            return "¡" + getNombre() + " exhala un ALIENTO DE FUEGO! Recibes " + real + " de daño.";
+            return "¡" + getNombre() + " exhala un ALIENTO DE FUEGO! Recibes " + real + " de dano.";
         }
         return super.actuar(tablero, objetivo);
     }

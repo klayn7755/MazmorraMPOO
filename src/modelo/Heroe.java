@@ -48,7 +48,7 @@ public abstract class Heroe extends Entidad implements Curable {
     /** Revisa que haya energía suficiente y luego deja que cada clase lance su habilidad. */
     public final String usarHabilidad(Entidad objetivo) throws RecursoInsuficienteException {
         if (getCostoHabilidad() > energia) {
-            throw new RecursoInsuficienteException("Energía insuficiente: necesitas "
+            throw new RecursoInsuficienteException("Energia insuficiente: necesitas "
                     + getCostoHabilidad() + " y tienes " + energia + ".");
         }
         energia -= getCostoHabilidad();
@@ -65,14 +65,14 @@ public abstract class Heroe extends Entidad implements Curable {
     @Override
     public void curar(int cantidad) {
         if (cantidad <= 0) {
-            throw new IllegalArgumentException("La curación debe ser positiva.");
+            throw new IllegalArgumentException("La curacion debe ser positiva.");
         }
         setVida(getVida() + cantidad);
     }
 
     public void agregarObjeto(Objeto objeto) throws RecursoInsuficienteException {
         if (inventario.size() >= CAPACIDAD_INVENTARIO) {
-            throw new RecursoInsuficienteException("Inventario lleno (máximo " + CAPACIDAD_INVENTARIO + ").");
+            throw new RecursoInsuficienteException("Inventario lleno (maximo " + CAPACIDAD_INVENTARIO + ").");
         }
         inventario.add(objeto);
     }
@@ -89,7 +89,7 @@ public abstract class Heroe extends Entidad implements Curable {
             recuperarEnergia(objeto.getCuraEnergia());
         }
         return "Usas " + objeto.getNombre() + ": +" + objeto.getCuraVida() + " de vida, +"
-                + objeto.getCuraEnergia() + " de energía.";
+                + objeto.getCuraEnergia() + " de energia.";
     }
 
     public void sumarPuntos(int cantidad) {
@@ -109,7 +109,7 @@ public abstract class Heroe extends Entidad implements Curable {
     public String actuar(Tablero tablero, Entidad objetivo) {
         recuperarEnergia(3);
         curar(3);
-        return getNombre() + " descansa y recupera 3 de energía y 3 de vida.";
+        return getNombre() + " descansa y recupera 3 de energia y 3 de vida.";
     }
 
     /** Cada ronda el héroe recupera 1 punto de energía. */
@@ -130,7 +130,7 @@ public abstract class Heroe extends Entidad implements Curable {
 
     public final void setEnergiaMaxima(int energiaMaxima) {
         if (energiaMaxima <= 0) {
-            throw new IllegalArgumentException("La energía máxima debe ser positiva.");
+            throw new IllegalArgumentException("La energia maxima debe ser positiva.");
         }
         this.energiaMaxima = energiaMaxima;
     }

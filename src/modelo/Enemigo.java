@@ -7,7 +7,7 @@
  */
 package modelo;
 
-/** Clase abstracta de los monstruos: detectan al héroe, se acercan y atacan. */
+/** Clase abstracta de los monstruos: detectan al heroe, se acercan y atacan. */
 public abstract class Enemigo extends Entidad {
 
     private static final int RADIO_DETECCION = 6;

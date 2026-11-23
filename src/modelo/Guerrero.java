@@ -36,6 +36,6 @@ public class Guerrero extends Heroe {
     protected String lanzarHabilidad(Entidad objetivo) {
         int real = objetivo.recibirDanio(calcularDanio() * 2);
         return getNombre() + " descarga un GOLPE BRUTAL sobre " + objetivo.getNombre()
-                + " y causa " + real + " de daño.";
+                + " y causa " + real + " de dao.";
     }
 }

@@ -42,14 +42,14 @@ public class GestorCombate {
         }
         int alcance = conHabilidad ? heroe.getAlcanceHabilidad() : heroe.getAlcance();
         if (heroe.distanciaA(objetivo) > alcance) {
-            System.out.println("[!] " + objetivo.getNombre() + " está a " + heroe.distanciaA(objetivo)
+            System.out.println("[advertencia] " + objetivo.getNombre() + " esta a " + heroe.distanciaA(objetivo)
                     + " casillas y tu alcance es " + alcance + ".");
             return false;
         }
         try {
             System.out.println(conHabilidad ? heroe.usarHabilidad(objetivo) : heroe.atacar(objetivo));
         } catch (RecursoInsuficienteException e) {
-            System.out.println("[!] " + e.getMessage());
+            System.out.println("[advertencia] " + e.getMessage());
             return false;
         }
         retirarMuertos(heroe, enemigos, tablero);
@@ -78,7 +78,7 @@ public class GestorCombate {
             if (!enemigo.estaVivo()) {
                 tablero.retirar(enemigo);
                 heroe.registrarVictoria(enemigo.getRecompensa());
-                System.out.println("¡Derrotaste a " + enemigo.getNombre() + "! +" + enemigo.getRecompensa() + " puntos.");
+                System.out.println("Derrotaste a " + enemigo.getNombre() + " +" + enemigo.getRecompensa() + " puntos.");
                 if (enemigo.esJefe()) {
                     jefeDerrotado = true;
                 }
@@ -98,7 +98,7 @@ public class GestorCombate {
             }
             System.out.println(enemigo.actuar(tablero, heroe));
             if (!heroe.estaVivo()) {
-                System.out.println("¡" + heroe.getNombre() + " ha caído en combate!");
+                System.out.println("¡" + heroe.getNombre() + " ha caido en combate!");
                 break;
             }
         }

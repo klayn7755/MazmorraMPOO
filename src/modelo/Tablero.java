@@ -37,13 +37,13 @@ public class Tablero {
     /** Revisa que una casilla exista, no sea muro y esté libre. */
     private void validar(int fila, int columna) throws MovimientoInvalidoException {
         if (fila < 0 || fila >= filas || columna < 0 || columna >= columnas) {
-            throw new MovimientoInvalidoException("Esa posición está fuera del mapa.");
+            throw new MovimientoInvalidoException("Esa posicion está fuera del mapa.");
         }
         if (terreno[fila][columna] == '#') {
             throw new MovimientoInvalidoException("Hay un muro en ese camino.");
         }
         if (entidades[fila][columna] != null) {
-            throw new MovimientoInvalidoException("Ahí está " + entidades[fila][columna].getNombre() + ".");
+            throw new MovimientoInvalidoException("Ahi está " + entidades[fila][columna].getNombre() + ".");
         }
     }
 

@@ -15,10 +15,10 @@ public class Picaro extends Heroe {
     }
 
     @Override
-    public String getClase() { return "Pícaro"; }
+    public String getClase() { return "Picaro"; }
 
     @Override
-    public String getNombreHabilidad() { return "Puñalada Trapera"; }
+    public String getNombreHabilidad() { return "Punalada Trapera"; }
 
     @Override
     public int getCostoHabilidad() { return 4; }
@@ -35,7 +35,7 @@ public class Picaro extends Heroe {
     @Override
     protected String lanzarHabilidad(Entidad objetivo) {
         int real = objetivo.recibirDanio(calcularDanio() * 3);
-        return getNombre() + " clava una PUÑALADA TRAPERA a " + objetivo.getNombre()
-                + " y causa " + real + " de daño.";
+        return getNombre() + " clava una PUNALADA TRAPERA a " + objetivo.getNombre()
+                + " y causa " + real + " de dano.";
     }
 }
